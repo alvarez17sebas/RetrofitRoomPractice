@@ -1,25 +1,29 @@
 package com.salvarez.retrofitandroompractice.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.salvarez.retrofitandroompractice.R
 import com.salvarez.retrofitandroompractice.viewmodel.CharacterViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var characterViewModel: CharacterViewModel
+    private val characterViewModel: CharacterViewModel by viewModels()
     private var characterAdapter: CharacterAdapter = CharacterAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        characterViewModel = ViewModelProviders.of(this).get(CharacterViewModel::class.java)
+        //characterViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
         setupRecyclerView()
 
         characterViewModel.getAllCharacters()

@@ -7,11 +7,14 @@ import com.salvarez.retrofitandroompractice.model.data.database.CharacterDao
 import com.salvarez.retrofitandroompractice.model.entity.CharacterEntity
 import com.salvarez.retrofitandroompractice.model.dto.CharacterDto
 import com.salvarez.retrofitandroompractice.model.mapping.CharacterMapping
+import javax.inject.Inject
 
-class RoomDatabaseRepository(context: Context) : Repository<CharacterDto> {
+class RoomDatabaseRepository @Inject constructor(var characterDao:CharacterDao) : Repository<CharacterDto> {
 
-    private var roomDatabase: AppDatabase? = AppDatabase.getInstance(context)
-    private var characterDao:CharacterDao? = roomDatabase?.characterDao()
+    //@Inject lateinit var characterDao:CharacterDao
+
+    //private var roomDatabase: AppDatabase? = AppDatabase.getInstance(context)
+    //private var characterDao:CharacterDao? = roomDatabase?.characterDao()
 
     override suspend fun save(data: CharacterDto){
         val characterEntity: CharacterEntity = CharacterMapping.toCharacterEntity(data)

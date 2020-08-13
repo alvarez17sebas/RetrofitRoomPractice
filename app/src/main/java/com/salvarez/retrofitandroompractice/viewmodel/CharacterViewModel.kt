@@ -1,8 +1,10 @@
 package com.salvarez.retrofitandroompractice.viewmodel
 
 import android.app.Application
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.salvarez.retrofitandroompractice.model.BaseResponse
 import com.salvarez.retrofitandroompractice.model.data.RemoteRepository
@@ -12,11 +14,12 @@ import com.salvarez.retrofitandroompractice.model.dto.CharacterDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class CharacterViewModel(application: Application) : AndroidViewModel(application) {
+class CharacterViewModel @ViewModelInject constructor(var localRepository: Repository<CharacterDto>): ViewModel() {
 
     var remoteRepository: Repository<CharacterDto> = RemoteRepository()
-    var localRepository: Repository<CharacterDto> = RoomDatabaseRepository(application.applicationContext)
+    //@Inject lateinit var localRepository: Repository<CharacterDto>
 
      var characterList: MutableLiveData<MutableList<CharacterDto>> = MutableLiveData()
 
