@@ -4,8 +4,9 @@ import com.salvarez.retrofitandroompractice.model.BaseResponse
 import com.salvarez.retrofitandroompractice.model.dto.CharacterDto
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class RemoteRepository: Repository<CharacterDto> {
+class RemoteRepository @Inject constructor(): Repository<CharacterDto> {
 
     private var retrofit = Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build()
     private var marvelService: MarvelService = retrofit.create(MarvelService::class.java)

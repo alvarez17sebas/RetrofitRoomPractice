@@ -6,6 +6,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.salvarez.retrofitandroompractice.di.LocalRepository
+import com.salvarez.retrofitandroompractice.di.RemoteRepositoryQualifier
 import com.salvarez.retrofitandroompractice.model.BaseResponse
 import com.salvarez.retrofitandroompractice.model.data.RemoteRepository
 import com.salvarez.retrofitandroompractice.model.data.Repository
@@ -16,9 +18,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class CharacterViewModel @ViewModelInject constructor(var localRepository: Repository<CharacterDto>): ViewModel() {
+class CharacterViewModel @ViewModelInject constructor(@LocalRepository var localRepository: Repository<CharacterDto>, @RemoteRepositoryQualifier var remoteRepository: Repository<CharacterDto>): ViewModel() {
 
-    var remoteRepository: Repository<CharacterDto> = RemoteRepository()
+    //var remoteRepository: Repository<CharacterDto> = RemoteRepository()
+    //@RemoteRepositoryQualifier
+    //@Inject lateinit var remoteRepository: Repository<CharacterDto>
     //@Inject lateinit var localRepository: Repository<CharacterDto>
 
      var characterList: MutableLiveData<MutableList<CharacterDto>> = MutableLiveData()
