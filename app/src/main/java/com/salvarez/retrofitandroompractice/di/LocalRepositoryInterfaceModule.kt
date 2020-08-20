@@ -8,9 +8,9 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 
-@InstallIn(ActivityRetainedComponent::class)
-@Module
+//@InstallIn(ActivityRetainedComponent::class)
+//@Module
 abstract class LocalRepositoryInterfaceModule {
-    @Binds
-    abstract fun provideLocalRepository(room: RoomDatabaseRepository): Repository<CharacterDto>
+    //@Binds
+    //abstract fun provideLocalRepository(room: RoomDatabaseRepository): Repository<CharacterDto>
 }

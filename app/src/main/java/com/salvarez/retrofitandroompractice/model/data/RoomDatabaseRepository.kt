@@ -1,24 +1,16 @@
 package com.salvarez.retrofitandroompractice.model.data
 
-import android.content.Context
-import com.salvarez.retrofitandroompractice.model.BaseResponse
-import com.salvarez.retrofitandroompractice.model.data.database.AppDatabase
 import com.salvarez.retrofitandroompractice.model.data.database.CharacterDao
-import com.salvarez.retrofitandroompractice.model.entity.CharacterEntity
 import com.salvarez.retrofitandroompractice.model.dto.CharacterDto
+import com.salvarez.retrofitandroompractice.model.entity.CharacterEntity
 import com.salvarez.retrofitandroompractice.model.mapping.CharacterMapping
 import javax.inject.Inject
 
 class RoomDatabaseRepository @Inject constructor(var characterDao:CharacterDao) : Repository<CharacterDto> {
 
-    //@Inject lateinit var characterDao:CharacterDao
-
-    //private var roomDatabase: AppDatabase? = AppDatabase.getInstance(context)
-    //private var characterDao:CharacterDao? = roomDatabase?.characterDao()
-
     override suspend fun save(data: CharacterDto){
         val characterEntity: CharacterEntity = CharacterMapping.toCharacterEntity(data)
-        //return characterDao!!.save(characterEntity)
+        return characterDao!!.save(characterEntity)
     }
 
     override suspend fun update(data: CharacterDto) {

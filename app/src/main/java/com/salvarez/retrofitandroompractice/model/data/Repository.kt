@@ -1,7 +1,5 @@
 package com.salvarez.retrofitandroompractice.model.data
 
-import com.salvarez.retrofitandroompractice.model.BaseResponse
-
 interface Repository<T> {
     suspend fun save(data: T)
     suspend fun saveAll(dataList: MutableList<T>)

@@ -14,18 +14,15 @@ class RemoteRepository @Inject constructor(): Repository<CharacterDto> {
     override suspend fun save(data: CharacterDto) {
         var response = BaseResponse<Boolean>()
         response.data = true
-        //return response
 
     }
 
     override suspend fun update(data: CharacterDto) {
         var response = BaseResponse<Boolean>()
         response.data = true
-        //return response
     }
 
     override suspend fun getAll(): MutableList<CharacterDto> {
-        var baseResponse: BaseResponse<MutableList<CharacterDto>> = BaseResponse()
         val response = marvelService.getAllCharacters()
         return response.data.results
     }
